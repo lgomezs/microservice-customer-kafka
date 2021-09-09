@@ -7,7 +7,7 @@ networks:
 services:
 
   zookeeper-server:
-    image: 'bitnami/zookeeper:latest'
+    image: 'lgomezs/zookeeper:1.0'
     networks:
       - kafka-net
     ports:
@@ -15,8 +15,8 @@ services:
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
 
-  kafka-server1:
-    image: 'bitnami/kafka:latest'
+  kafka-server:
+    image: 'lgomezs/kafka:1.0'
     networks:
       - kafka-net
     ports:
@@ -28,24 +28,7 @@ services:
       - ALLOW_PLAINTEXT_LISTENER=yes
       - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,PLAINTEXT_HOST://:29092
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka-server1:9092,PLAINTEXT_HOST://kafka-server1:29092
-    depends_on:
-      - zookeeper-server
-
-  kafka-server2:
-    image: 'bitnami/kafka:latest'
-    networks:
-      - kafka-net
-    ports:
-      - '9093:9092'
-      - '29093:29093'
-    environment:
-      - KAFKA_BROKER_ID:2
-      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper-server:2181
-      - ALLOW_PLAINTEXT_LISTENER=yes
-      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
-      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9093,PLAINTEXT_HOST://:29093
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka-server2:9093,PLAINTEXT_HOST://kafka-server2:29093
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka-server:9092,PLAINTEXT_HOST://kafka-server:29092
     depends_on:
       - zookeeper-server
 
@@ -69,8 +52,7 @@ services:
     networks:
       - kafka-net
     depends_on:
-      - kafka-server1
-      - kafka-server2
+      - kafka-server
       - docker-mongodb
     environment:
-      - KAFKA_SERVERS=kafka-server1:29092,kafka-server2:29093
+      - KAFKA_SERVERS=kafka-server:29092

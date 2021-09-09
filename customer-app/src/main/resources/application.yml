@@ -2,7 +2,7 @@ server:
   port: ${PORT:8080}
 spring:
   application:
-    name: ${APPLICATION_NAME:customerEventKafka}
+    name: ${APPLICATION_NAME:microservice-customer-event}
   profiles:
     active: ${PROFILE:local}
   main:

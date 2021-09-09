@@ -1,0 +1,64 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: zookeeper-server
+spec:
+  selector:
+    app: zookeeper-server
+  type: NodePort
+  ports:
+    - port: 2181
+      targetPort: 2181
+      #nodePort: 32503
+      # protocol: TCP
+    # name: rest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka-server
+  labels:
+    app: kafka-server
+spec:
+  ports:
+    - port: 9092
+      targetPort: 9092
+      name: tcp
+    - port: 29092
+      targetPort: 29092
+      name: plaintext
+    - port: 9999
+      name: jmx
+  clusterIP: None
+  selector:
+    app: kafka-server
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: mongodb
+spec:
+  selector:
+    app: mongodb
+  type: NodePort
+  ports:
+    - port: 27017
+      targetPort: 27017
+      nodePort: 32506
+      protocol: TCP
+      name: tcp
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: microservice-customer-event
+spec:
+  selector:
+    app: microservice-customer-event
+  type: NodePort
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort: 32502
+      protocol: TCP
+      name: rest
