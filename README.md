@@ -2,7 +2,7 @@
 
 Spring Boot application with a Kafka producer to publish messages to your Kafka topic, as well as with a Kafka consumer to read those messages.
 
-![Screenshot](img/microservice architecture.png?raw=true "services")
+![Screenshot](img/microservice-architecture.png?raw=true "services")
 
 ## structure
 
