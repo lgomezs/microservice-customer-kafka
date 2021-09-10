@@ -2,7 +2,7 @@
 
 Spring Boot application with a Kafka producer to publish messages to your Kafka topic, as well as with a Kafka consumer to read those messages.
 
-# structure
+## structure
 
     - customer-app
         main microservice
@@ -16,11 +16,11 @@ Spring Boot application with a Kafka producer to publish messages to your Kafka 
     - customer-services
         services rest customer
 
-# compile
+## compile
 
     mvn clean install
 
-# Execute in docker local
+## Execute in docker local
 
     in local, add into host.conf: 
         127.0.0.1 zookeeper-server
@@ -29,7 +29,7 @@ Spring Boot application with a Kafka producer to publish messages to your Kafka 
 
      docker-compose up 
 
-# examples commands kafka
+## examples commands kafka
 
  -- create topic customer-events
 
@@ -51,11 +51,11 @@ Spring Boot application with a Kafka producer to publish messages to your Kafka 
 
     ./bin/kafka-console-consumer.sh --topic customerDto-events  --bootstrap-server kafka-server:9092
 
-# Service endpoint get customers
+## Service endpoint get customers
 
  GET http://localhost:8080/api/v1/customer
 
-# Deploy to AKS (minikube local)
+## Deploy to AKS (minikube local)
 
 -- install minikube and kubectl
 
@@ -102,7 +102,7 @@ Spring Boot application with a Kafka producer to publish messages to your Kafka 
 
 ![Screenshot](img/log-microservice.png?raw=true "services")
 
-# port-forward local
+## port-forward local
 
     kubectl port-forward --address 0.0.0.0 service/mongodb 27017:27017
     kubectl port-forward --address 0.0.0.0 service/zookeeper-server 2181:2181
