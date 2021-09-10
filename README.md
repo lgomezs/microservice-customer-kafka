@@ -1,4 +1,4 @@
-# Microservice customer with kafka events
+# Microservice with kafka events
 
 Spring Boot application with a Kafka producer to publish messages to your Kafka topic, as well as with a Kafka consumer to read those messages.
 
@@ -109,6 +109,26 @@ Spring Boot application with a Kafka producer to publish messages to your Kafka 
     kubectl port-forward --address 0.0.0.0 service/kafka-server 9092:9092
     kubectl port-forward --address 0.0.0.0 service/microservice-customer-event 8080:8080
 
+# istio install and config
+
+   [https://istio.io/latest/docs/examples/microservices-istio/enable-istio-all-microservices/](https://istio.io/latest/docs/examples/microservices-istio/enable-istio-all-microservices/)
+
+
+ istio dashboard
+
+  ![Screenshot](img/istio.png?raw=true "services")
+
+ logs 
+
+ ![Screenshot](img/istio-log.png?raw=true "services")
+
+  metrics dashboard
+
+ ![Screenshot](img/istio-metrics.png?raw=true "services")
+
+  traffic animation
+
+![Screenshot](img/istio-trafic-animation.png?raw=true "services")
 
 
 
