@@ -111,6 +111,7 @@ Spring Boot application with a Kafka producer to publish messages to your Kafka 
     kubectl port-forward --address 0.0.0.0 service/kafka-server 9092:9092
     kubectl port-forward --address 0.0.0.0 service/microservice-customer-event 8080:8080
 
+
 # istio install and config
 
    [https://istio.io/latest/docs/examples/microservices-istio/enable-istio-all-microservices/](https://istio.io/latest/docs/examples/microservices-istio/enable-istio-all-microservices/)
