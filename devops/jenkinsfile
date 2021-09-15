@@ -7,9 +7,9 @@ pipeline {
 mvn --version
 git --version'''
       }
-    }<<
+    }
 
-    stage('Deploy billing App') {
+    stage('Deploy service customer') {
       steps {
         withCredentials(bindings: [
                       string(credentialsId: 'kubernete-jenkis-server-account', variable: 'api_token')
