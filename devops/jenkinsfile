@@ -1,0 +1,24 @@
+pipeline {
+  agent any
+  stages {
+    stage('clone repository') {
+      steps {
+        sh '''java -version
+mvn --version
+git --version'''
+      }
+    }<<
+
+    stage('Deploy billing App') {
+      steps {
+        withCredentials(bindings: [
+                      string(credentialsId: 'kubernete-jenkis-server-account', variable: 'api_token')
+                      ]) {
+            sh 'kubectl --token $api_token --server https://bfcc-190-235-229-86.ngrok.io  --insecure-skip-tls-verify=true apply -f AKS-deploy-yaml'
+          }
+
+        }
+      }
+
+    }
+  }
