@@ -6,7 +6,7 @@ ENV TZ=America/Lima \
     APP_HOME=/opt/application
 
 ARG JAR_FILE=target/*.jar
-COPY customer-app/target/*.jar $APP_HOME/app.jar
+COPY ${JAR_FILE} $APP_HOME/app.jar
 
 WORKDIR ${APP_HOME}
 EXPOSE 8080
