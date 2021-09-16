@@ -135,6 +135,6 @@ Spring Boot application with a Kafka producer to publish messages to your Kafka 
 ![Screenshot](img/istio-trafic-animation.png?raw=true "services")
 
 
-
+cfe336fd474244bfa5a50b0eba019afc
 
 

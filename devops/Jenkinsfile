@@ -1,0 +1,24 @@
+pipeline {
+
+  agent any
+
+  stages {
+
+    stage('Checkout Source') {
+      steps {
+        git url:'https://github.com/lgomezs/microservice-customer-kafka.git', branch:'master'
+      }
+    }
+
+      stage("Build image") {
+            steps {
+                script {
+                    myapp = docker.build("customer-app/customer-service:${env.BUILD_ID}")
+                }
+            }
+        }
+
+
+  }
+
+}
