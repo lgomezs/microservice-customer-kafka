@@ -139,16 +139,37 @@ Spring Boot application with a Kafka producer to publish messages to your Kafka 
 
     wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
     sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > \
-    /etc/apt/sources.list
-.d/jenkins.list'
+    /etc/apt/sources.list.d/jenkins.list'
     sudo apt-get update
     sudo apt-get install jenkins
 
-requirements:
+## requirements:
   docker
+  maven
+  minikube
 
     sudo usermod -aG docker $USER
     sudo usermod -aG docker jenkins 
+
+## PLUGINS DOCKER
+
+  - docker piepline
+  - kubernetes (API, secret, crt)
+
+
+      kubectl apply -f AKS-jenkins-account.yaml
+      kubectl --namespace default get serviceaccount
+      kubectl --namespace XXXXX get serviceaccount default  -o yaml
+      kubectl describe secrets/XXXX
+
+  add to secrets jenkins
+  add DOCKER_HUB_PASSWORD to secrets jenkins
+  config KUBERNETES_JENKINS_ACCOUNT credential in jenkins
+
+
+![Screenshot](img/jenkins-pipeline.png?raw=true "services")
+
+
 
 
 

@@ -1,0 +1,54 @@
+pipeline {
+
+    agent any
+
+  stages {
+
+   stage("Git Clone"){
+       steps{
+          git credentialsId: 'GIT_CREDENTIALS', url: 'https://github.com/lgomezs/microservice-customer-kafka.git'
+       }
+    }
+
+     stage('mvn Build') {
+          steps{
+            sh 'mvn clean install'
+          }
+    }
+
+
+    stage("Docker build"){
+        steps{
+            sh 'docker version'
+            sh 'ls customer-app/target/'
+            sh 'docker build  -f devops/Dockerfile -t microservice-customer .'
+            sh 'docker image list'
+            sh 'docker tag microservice-customer:latest lgomezs/microservice-customer:1.0'
+        }
+    }
+
+     stage("Docker Login"){
+         steps{
+            withCredentials([string(credentialsId: 'DOCKER_HUB_PASSWORD', variable: 'PASSWORD')]) {
+                sh 'docker login -u lgomezs -p $PASSWORD'
+            }
+         }
+     }
+
+    stage("Push Image to Docker Hub"){
+         steps{
+            sh 'docker push lgomezs/microservice-customer:1.0'
+         }
+    }
+
+    stage('Deploy to AKS') {
+          steps {
+            withCredentials(bindings: [
+                          string(credentialsId: 'KUBERNETES_JENKINS_ACCOUNT', variable: 'api_token')
+                          ]) {
+                sh 'kubectl --token $api_token --server https://127.0.0.1:55993  --insecure-skip-tls-verify=true apply -f devops/AKS-deploy.yaml'
+              }
+            }
+       }
+  }
+}
