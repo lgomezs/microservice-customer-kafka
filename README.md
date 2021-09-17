@@ -135,7 +135,7 @@ Spring Boot application with a Kafka producer to publish messages to your Kafka 
 ![Screenshot](img/istio-trafic-animation.png?raw=true "services")
 
 
-## install jenkins
+## Continuous Delivery (CD) Pipelines, install jenkins
 
     wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
     sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > \
