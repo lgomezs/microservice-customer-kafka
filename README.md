@@ -144,14 +144,14 @@ Spring Boot application with a Kafka producer to publish messages to your Kafka 
     sudo apt-get install jenkins
 
 ## requirements:
-  docker
-  maven
-  minikube
+   - docker
+   - maven
+   - minikube
 
-    sudo usermod -aG docker $USER
-    sudo usermod -aG docker jenkins 
+      sudo usermod -aG docker $USER
+      sudo usermod -aG docker jenkins 
 
-## PLUGINS DOCKER
+## Jenkins PLUGINS DOCKER
 
   - docker piepline
   - kubernetes (API, secret, crt)
@@ -162,9 +162,8 @@ Spring Boot application with a Kafka producer to publish messages to your Kafka 
       kubectl --namespace XXXXX get serviceaccount default  -o yaml
       kubectl describe secrets/XXXX
 
-  add to secrets jenkins
-  add DOCKER_HUB_PASSWORD to secrets jenkins
-  config KUBERNETES_JENKINS_ACCOUNT credential in jenkins
+   - add secret DOCKER_HUB_PASSWORD to jenkins
+   - add KUBERNETES_JENKINS_ACCOUNT credential to jenkins
 
 
 ![Screenshot](img/jenkins-pipeline.png?raw=true "services")
