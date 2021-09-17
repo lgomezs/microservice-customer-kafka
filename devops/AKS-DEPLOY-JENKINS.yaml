@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: jenkins-server
-          image: jenkinsci/blueocean
+          image: nestybox/jenkins-syscont
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
