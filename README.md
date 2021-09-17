@@ -135,6 +135,20 @@ Spring Boot application with a Kafka producer to publish messages to your Kafka 
 ![Screenshot](img/istio-trafic-animation.png?raw=true "services")
 
 
-cfe336fd474244bfa5a50b0eba019afc
+## install jenkins
+
+    wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+    sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > \
+    /etc/apt/sources.list
+.d/jenkins.list'
+    sudo apt-get update
+    sudo apt-get install jenkins
+
+requirements:
+  docker
+
+    sudo usermod -aG docker $USER
+    sudo usermod -aG docker jenkins 
+
 
 
